@@ -1,3 +1,4 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:bingo/constants.dart';
@@ -12,6 +13,7 @@ class _PlayScreenState extends State<PlayScreen> {
   List<String> board;
   List<bool> selected = new List.filled(25, false);
   bool alerted = false;
+  final player = AudioCache();
 
   @override
   void initState() {
@@ -50,6 +52,11 @@ class _PlayScreenState extends State<PlayScreen> {
     if (s[4] && s[8] && s[12] && s[16] && s[20]) return true;
 
     return false;
+  }
+
+  void checkSpecial(int i) {
+    print(board[i]);
+    if (board[i] == 'RPM Fanfare') player.play('rpm-fanfare.mp3');
   }
 
   void checkBingo() {
@@ -104,6 +111,7 @@ class _PlayScreenState extends State<PlayScreen> {
                         setState(() {
                           selected[x * 5 + y] = !selected[x * 5 + y];
                           checkBingo();
+                          checkSpecial(x * 5 + y);
                         });
                       },
                     ),
