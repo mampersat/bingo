@@ -10,7 +10,7 @@ List<String> words = [
   'Chord',
   'Day Job\nReverending',
   'Distracted by Chat',
-  'Dont know it\n Playing it anyway',
+  'Dont know it\n\nPlaying it anyway',
   'Elton',
   'Extra Innings',
   'Feeding America',
@@ -35,7 +35,7 @@ List<String> words = [
   'Throws a request in the air',
   'Vision Board',
   'WHAAT',
-  'Studio Exec / Press',
+  'Studio Exec\nPress',
   'SteveDave',
   'Elephant'
 ];
