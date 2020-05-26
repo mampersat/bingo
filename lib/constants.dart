@@ -1,7 +1,7 @@
 List<String> words = [
   'Fun Time Adventure Zone',
   'Band name Mutilation',
-  'Bears\n(paws etc.)',
+  'Bears\n(paws, hat, figurine etc.)',
   'Beatles',
   'Birthday',
   'Bridge',
@@ -37,5 +37,6 @@ List<String> words = [
   'WHAAT',
   'Studio Exec\nPress',
   'SteveDave',
-  'Elephant'
+  'Elephant',
+  'Stevie Wonder'
 ];

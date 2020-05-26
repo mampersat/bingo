@@ -1,10 +1,12 @@
 import 'package:audioplayers/audio_cache.dart';
+import 'package:bingo/screens/about_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:bingo/constants.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class PlayScreen extends StatefulWidget {
+  static String id = 'playscree';
   @override
   _PlayScreenState createState() => _PlayScreenState();
 }
@@ -55,7 +57,6 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   void checkSpecial(int i) {
-    print(board[i]);
     // TODO refactor words to contain songs in the a real object
     if (board[i] == 'RPM Fanfare') player.play('rpm-fanfare.mp3');
     if (board[i] == 'Take me Out to the Ballgame')
@@ -94,6 +95,11 @@ class _PlayScreenState extends State<PlayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: FlatButton(
+            child: Icon(Icons.menu),
+            onPressed: () {
+              Navigator.pushNamed(context, AboutScreen.id);
+            }),
         title: Text('7th Inning Stretch Bingo'),
         actions: <Widget>[
           FlatButton(
