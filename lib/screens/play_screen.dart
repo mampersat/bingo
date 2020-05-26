@@ -56,7 +56,12 @@ class _PlayScreenState extends State<PlayScreen> {
 
   void checkSpecial(int i) {
     print(board[i]);
+    // TODO refactor words to contain songs in the a real object
     if (board[i] == 'RPM Fanfare') player.play('rpm-fanfare.mp3');
+    if (board[i] == 'Take me Out to the Ballgame')
+      player.play('four-bar-intro.mp3');
+    if (board[i] == 'Glissando') player.play('glissando.mp3');
+    if (board[i] == 'Birthday') player.play('bday.mp3');
   }
 
   void checkBingo() {
@@ -89,7 +94,17 @@ class _PlayScreenState extends State<PlayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bingo'),
+        title: Text('7th Inning Stretch Bingo'),
+        actions: <Widget>[
+          FlatButton(
+            child: Icon(Icons.autorenew),
+            onPressed: () {
+              setState(() {
+                setup();
+              });
+            },
+          ),
+        ],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,14 +133,6 @@ class _PlayScreenState extends State<PlayScreen> {
                 ],
               ),
             ),
-          FlatButton(
-            child: Icon(Icons.autorenew),
-            onPressed: () {
-              setState(() {
-                setup();
-              });
-            },
-          ),
         ],
       ),
     );
@@ -150,7 +157,7 @@ class Square extends StatelessWidget {
           padding: EdgeInsets.all(1.0),
           child: Material(
             borderRadius: BorderRadius.circular(5.0),
-            color: selected ? Colors.blueGrey : Colors.white10,
+            color: selected ? Colors.yellow : Colors.white,
             child: Center(
               child: Text(
                 text,
