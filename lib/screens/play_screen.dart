@@ -1,12 +1,17 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:bingo/screens/about_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:bingo/constants.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+// Works for mobile app
+//import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
+
+// Works on web based app
+//import 'package:clippy/browser.dart' as clippy;
 
 class PlayScreen extends StatefulWidget {
-  static String id = 'playscree';
+  static String id = '/';
   @override
   _PlayScreenState createState() => _PlayScreenState();
 }
@@ -14,6 +19,7 @@ class PlayScreen extends StatefulWidget {
 class _PlayScreenState extends State<PlayScreen> {
   List<String> board;
   List<bool> selected = new List.filled(25, false);
+  String winningWords;
   bool alerted = false;
   final player = AudioCache();
 
@@ -32,26 +38,40 @@ class _PlayScreenState extends State<PlayScreen> {
     alerted = false;
   }
 
+  bool isListBingo(List<int> list) {
+    bool check = true;
+    String words = '';
+    for (int i in list) {
+      if (check &= selected[i]) {
+        words += board[i].replaceAll('\n', '-') + '\n';
+      }
+    }
+
+    if (check) winningWords = words;
+
+    return check;
+  }
+
   bool isBingo() {
     List<bool> s = selected;
 
-    // Check Rows
-    if (s[0] && s[1] && s[2] && s[3] && s[4]) return true;
-    if (s[5] && s[6] && s[7] && s[8] && s[9]) return true;
-    if (s[10] && s[11] && s[12] && s[13] && s[14]) return true;
-    if (s[15] && s[16] && s[17] && s[18] && s[19]) return true;
-    if (s[20] && s[21] && s[22] && s[23] && s[24]) return true;
+    // rows
+    if (isListBingo([0, 1, 2, 3, 4])) return true;
+    if (isListBingo([5, 6, 7, 8, 9])) return true;
+    if (isListBingo([10, 11, 12, 13, 14])) return true;
+    if (isListBingo([15, 16, 17, 18, 19])) return true;
+    if (isListBingo([20, 21, 22, 23, 24])) return true;
 
-    // Check Columns
-    if (s[0] && s[5] && s[10] && s[15] && s[20]) return true;
-    if (s[1] && s[6] && s[11] && s[16] && s[21]) return true;
-    if (s[2] && s[7] && s[12] && s[17] && s[22]) return true;
-    if (s[3] && s[8] && s[13] && s[18] && s[23]) return true;
-    if (s[4] && s[9] && s[14] && s[19] && s[24]) return true;
+    // cols
+    if (isListBingo([0, 5, 10, 15, 20])) return true;
+    if (isListBingo([1, 6, 11, 16, 21])) return true;
+    if (isListBingo([2, 7, 12, 17, 22])) return true;
+    if (isListBingo([3, 8, 13, 18, 23])) return true;
+    if (isListBingo([4, 9, 14, 19, 24])) return true;
 
-    // Check diagnols
-    if (s[0] && s[6] && s[12] && s[18] && s[24]) return true;
-    if (s[4] && s[8] && s[12] && s[16] && s[20]) return true;
+    // diagonals
+    if (isListBingo([0, 6, 12, 18, 24])) return true;
+    if (isListBingo([4, 8, 12, 16, 20])) return true;
 
     return false;
   }
@@ -82,10 +102,32 @@ class _PlayScreenState extends State<PlayScreen> {
             ),
             onPressed: () => Navigator.pop(context),
             width: 120,
-          )
+          ),
+          DialogButton(
+            color: Colors.red,
+            child: Text(
+              "Copy to Clipboard",
+              style: TextStyle(color: Colors.white, fontSize: 10),
+            ),
+            onPressed: () {
+              String text = 'Bingo! ';
+              text += new DateTime.now().toString() + '\n';
+              text += winningWords;
+              // Works on mobile app
+              //FlutterClipboardManager.copyToClipBoard(text);
+              // Works on web based app
+              //clippy.write(text);
+            },
+            width: 120,
+          ),
         ],
         context: context,
         title: 'Bingo',
+        content: Column(
+          children: <Widget>[
+            Text(winningWords, style: TextStyle(fontSize: 14))
+          ],
+        ),
       ).show();
       alerted = true;
     }
@@ -100,7 +142,9 @@ class _PlayScreenState extends State<PlayScreen> {
             onPressed: () {
               Navigator.pushNamed(context, AboutScreen.id);
             }),
-        title: Text('7th Inning Stretch Bingo'),
+        title: Text(
+          '7th Inning Stretch Bingo',
+        ),
         actions: <Widget>[
           FlatButton(
             child: Icon(Icons.autorenew),

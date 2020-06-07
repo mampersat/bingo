@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AboutScreen extends StatefulWidget {
-  static String id = 'about_screen';
+  static String id = '/about_screen';
 
   @override
   _AboutScreenState createState() => _AboutScreenState();
