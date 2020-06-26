@@ -6,9 +6,10 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:bingo/constants.dart';
 // Works for mobile app
 //import 'package:flutter_clipboard_manager/flutter_clipboard_manager.dart';
-
 // Works on web based app
 //import 'package:clippy/browser.dart' as clippy;
+//import 'dart:io';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class PlayScreen extends StatefulWidget {
   static String id = '/';
@@ -103,29 +104,24 @@ class _PlayScreenState extends State<PlayScreen> {
             onPressed: () => Navigator.pop(context),
             width: 120,
           ),
-          DialogButton(
-            color: Colors.red,
-            child: Text(
-              "Copy to Clipboard",
-              style: TextStyle(color: Colors.white, fontSize: 10),
-            ),
-            onPressed: () {
-              String text = 'Bingo! ';
-              text += new DateTime.now().toString() + '\n';
-              text += winningWords;
-              // Works on mobile app
-              //FlutterClipboardManager.copyToClipBoard(text);
-              // Works on web based app
-              //clippy.write(text);
-            },
-            width: 120,
-          ),
+//          DialogButton(
+//            color: Colors.red,
+//            child: Text(
+//              "Copy to Clipboard",
+//              style: TextStyle(color: Colors.white, fontSize: 10),
+//            ),
+//            onPressed: () {
+//              print(winningWords);
+//              ClipboardManager.copyToClipBoard(winningWords);
+//            },
+//            width: 120,
+//          ),
         ],
         context: context,
         title: 'Bingo',
         content: Column(
           children: <Widget>[
-            Text(winningWords, style: TextStyle(fontSize: 14))
+            SelectableText(winningWords, style: TextStyle(fontSize: 14))
           ],
         ),
       ).show();

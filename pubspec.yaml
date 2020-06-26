@@ -19,7 +19,8 @@ dependencies:
   auto_size_text: ^2.1.0
   audioplayers: ^0.15.0
   # flutter_clipboard_manager: ^0.0.2
-  clippy: ^1.0.0
+  # clippy: ^1.0.0
+  clipboard_manager: ^0.0.1
 
 
 dev_dependencies:
