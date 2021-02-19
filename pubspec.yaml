@@ -21,6 +21,7 @@ dependencies:
   # flutter_clipboard_manager: ^0.0.2
   # clippy: ^1.0.0
   clipboard_manager: ^0.0.1
+  characters: ^1.0.0
 
 
 dev_dependencies:

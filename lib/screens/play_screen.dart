@@ -27,10 +27,11 @@ class _PlayScreenState extends State<PlayScreen> {
   @override
   void initState() {
     super.initState();
-    setup();
+    create_new_card();
   }
 
-  void setup() {
+  void create_new_card() {
+    //user spread operator to clone the word array
     board = [...words];
     board.shuffle();
     board[12] = "Free Space\n\nLove You";
@@ -146,7 +147,7 @@ class _PlayScreenState extends State<PlayScreen> {
             child: Icon(Icons.autorenew),
             onPressed: () {
               setState(() {
-                setup();
+                create_new_card();
               });
             },
           ),

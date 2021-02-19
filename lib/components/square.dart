@@ -5,12 +5,12 @@ class Square {
   Square({this.text, this.soundFile});
 }
 
-List<Square> words = [
+List<Square> squares = [
   Square(text: 'Fun Time Adventure Zone'),
   Square(text: 'Band name Mutilation'),
   Square(text: 'Bears\n(paws, hat, figurine etc.)'),
   Square(text: 'Beatles'),
-  Square(text: 'Birthday'),
+  Square(text: 'Birthday', soundFile: 'bday.mp3'),
   Square(text: 'Bridge'),
   Square(text: 'Cait and Kelly'),
   Square(text: 'Chocolate'),
