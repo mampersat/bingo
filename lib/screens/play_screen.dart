@@ -140,7 +140,7 @@ class _PlayScreenState extends State<PlayScreen> {
               Navigator.pushNamed(context, AboutScreen.id);
             }),
         title: Text(
-          'flutt7th Inning Stretch Bingo',
+          '7th Inning Stretch Bingo',
         ),
         actions: <Widget>[
           FlatButton(

@@ -5,7 +5,7 @@ List<String> words = [
   'Beatles',
   'Birthday',
   'Bridge',
-  'Cait and Kelly',
+  'Cait or Kelly',
   'Chocolate',
   'Chord',
   'Day Job\nReverending',
@@ -40,4 +40,11 @@ List<String> words = [
   'Elephant',
   'Stevie Wonder',
   'Baseball Card',
+  'Special Guest',
+  'Chloe Jr.',
+  'Whisper Texts',
+  'Vaccine Fanfare',
+  'Baseball Card',
+  'Hocus Pocus Birthday',
+  'Sponsor'
 ];
